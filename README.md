@@ -16,11 +16,7 @@ $ pip install -r requirements.txt
 ```
 Start the flask server using the following command
 ```python3
-$ python kanban.py
+$ python app.py
 ```
 
-To install all the requirements
-```python3
-$pip install requirements.txt
-```
 Your Kanban board should be up and running at http://127.0.0.1:5000/
