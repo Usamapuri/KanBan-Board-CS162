@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/login.css')}}">
+{% endblock %}
+
+
+
+{% block body %}
+<h1>KanBan Board</h1>
+<br>
+<br>
+<h1>Login</h1>
+<form method="POST" action="">
+    <div class="container">
+        <label for="user_name"><b>User_name</b></label>
+        <input type="text" placeholder="Enter Username" name="user_name" value='{{request.form.user_name}}' required>
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="pwd" value='{{request.form.pwd}}' required>
+
+        <button type="submit" value="Login">Login</button>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <br>
+        <br>
+        <a>New User?</a>
+        <br>
+        <a class="reg" href="{{url_for('signup')}}">Register Here!</a>
+    </div>
+
+    {% if error %}
+    <p class="alert alert-danger" role="alert">
+        <strong>Error:</strong> {{ error }}
+        {% endif %}
+</form>
+{% endblock %}

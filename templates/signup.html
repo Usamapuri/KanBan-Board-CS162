@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/login.css')}}">
+{% endblock %}
+
+
+
+{% block body %}
+<h1>KanBan Board</h1>
+<br>
+<br>
+<h1>Sign Up</h1>
+<form method="POST" action="/signup">
+    <div class="container">
+        <label for="user_name"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="user_name" required>
+
+        <label for="email"><b>Email Address</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="pwd" required>
+
+
+        <label for="pwd"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="repwd" required>
+
+        <button type="submit" value="Signup">Sign Up</button>
+
+        <a>Already have an account?</a>
+        <a class="log" href="{{url_for('login')}}">Login Here!</a>
+    </div>
+
+    {% if error %}
+    <p class="alert alert-danger" role="alert" align="center">
+        <strong>OOPS:</strong> {{ error }}
+        {% endif %}
+
+</form>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/main.css')}}">
+{% endblock %}
+
+
+{% block body %}
+<div>
+    <form action="/logout" style="text-align: end;">
+        <h1>KanBan Board</h1>
+        <input type="submit" name="logout" value="Logout">
+    </form>
+    {% if current_user.is_authenticated %}
+    <h2 Welcome to the Kanban Board {{current_user.user_name}}!></h2>
+    {% endif %}
+</div>
+
+
+<div class="row">
+
+    <div class="column">
+        <h2>To Do</h2>
+        <form action="/doingboard" method="POST">
+            {% for i in to_do %}
+            <ul>
+                <li>{{i.task}}</li>
+                <input type='submit' name='{{i.id}}' value='DOING'>
+            </ul>
+            {% endfor %}
+        </form>
+    </div>
+
+    <div class="column">
+        <h2>Doing</h2>
+        <form action='/doneboard' method="POST">
+            {% for j in do_ing %}
+            <ul>
+                <li>{{j.task}}</li>
+                <input type='submit' name='{{j.id}}' value='DONE'>
+            </ul>
+            {% endfor %}
+        </form>
+    </div>
+
+    <div class="column">
+        <h2>Done</h2>
+        <form action='/deletetask' method='POST'>
+            {% for k in do_ne %}
+            <ul>
+                <li>{{k.task}}</li>
+                <input type='submit' name='{{k.id}}' value='DELETE'>
+            </ul>
+        {% endfor %}
+        </form>
+    </div>
+
+</div>
+
+<br>
+
+<div>
+    <form style="text-align: center;" action="/addtask" method="POST">
+        <input type="text" name="tasktodo" placeholder="Enter Task">
+        <button class="button" type="submit">
+            Submit
+        </button>
+    </form>
+</div>
+{% endblock %}
